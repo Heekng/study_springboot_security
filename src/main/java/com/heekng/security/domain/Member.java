@@ -1,6 +1,7 @@
 package com.heekng.security.domain;
 
 import lombok.Getter;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 
