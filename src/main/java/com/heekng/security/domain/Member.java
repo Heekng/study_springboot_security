@@ -1,6 +1,7 @@
 package com.heekng.security.domain;
 
 import lombok.Getter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 
@@ -24,5 +25,10 @@ public class Member {
         this.name = name;
         this.password = password;
         this.authority = authority;
+    }
+
+    public void encodePassword() {
+        BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
+        this.password = bcpe.encode(this.password);
     }
 }

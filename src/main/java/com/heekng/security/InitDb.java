@@ -18,7 +18,7 @@ public class InitDb {
     @PostConstruct
     public void init() {
         Member member = new Member();
-        member.createMember("heekng", "heekng1234", "고광", Authority.ROLE_ADMIN);
+        member.createMember("heekng", "heekng1234", "고광", Authority.ADMIN);
         memberService.join(member);
         log.info("create success!!");
     }

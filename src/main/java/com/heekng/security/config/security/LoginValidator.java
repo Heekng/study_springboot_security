@@ -4,7 +4,6 @@ import com.heekng.security.domain.Authority;
 import com.heekng.security.domain.Member;
 import com.heekng.security.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,8 +26,8 @@ public class LoginValidator implements UserDetailsService {
     private final MemberRepository memberRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        List<Member> findMembers = memberRepository.findById(id);
+    public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
+        List<Member> findMembers = memberRepository.findByLoginId(loginId);
 
         if (findMembers.isEmpty()) {
             return null;
@@ -38,7 +37,7 @@ public class LoginValidator implements UserDetailsService {
         Authority authority = findMembers.get(0).getAuthority();
 
         return User.builder()
-                .username(id)
+                .username(loginId)
                 .password(password)
                 .roles(authority.name())
                 .build();

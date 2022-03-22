@@ -21,7 +21,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/").permitAll() //모든 경로 접근 가능
-                    .antMatchers("/admin").hasAuthority("ROLE_ADMIN") // /admin: ROLE_ADMIN 권한 가진 사용자만 사용 가능
+                    .antMatchers("/admin").hasAuthority("ADMIN") // /admin: ROLE_ADMIN 권한 가진 사용자만 사용 가능
                     .anyRequest().authenticated() // 모든 URL 인증 필수
                 .and()
                     .formLogin() //폼방식 로그인
