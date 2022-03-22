@@ -20,11 +20,11 @@ public class MemberService {
     public Long join(Member member) {
         validateDuplicateMember(member);
         memberRepository.save(member);
-        return member.getMemberId();
+        return member.getId();
     }
 
     public void validateDuplicateMember(Member member) {
-        List<Member> findMembers = memberRepository.findById(member.getId());
+        List<Member> findMembers = memberRepository.findById(member.getLoginId());
         if (!findMembers.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }

@@ -1,7 +1,6 @@
 package com.heekng.security.domain;
 
 import lombok.Getter;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 
@@ -10,10 +9,10 @@ import javax.persistence.*;
 public class Member {
     @Id
     @GeneratedValue
-    @Column
-    private Long memberId;
+    @Column(name = "member_id")
+    private Long id;
 
-    private String id;
+    private String loginId;
     private String name;
     private String password;
 
@@ -21,7 +20,7 @@ public class Member {
     private Authority authority;
 
     public void createMember(String id, String password, String name, Authority authority) {
-        this.id = id;
+        this.loginId = id;
         this.name = name;
         this.password = password;
         this.authority = authority;
